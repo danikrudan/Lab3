@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int main() {
+    int n, sum, m;
+    int arr[100];
+    printf("Введите длину массива\n");
+    printf("n = ");
+    while (scanf("%d", &n) != 1 || getchar() != '\n'){
+        printf("Ошибка!\n");
+        rewind(stdin);
+    }
+
+   for(int i = 0; i < n;i++){
+       printf("arr[%d] = " , i);
+       while (scanf("%d", &arr[i]) != 1 || getchar() != '\n'){
+           printf("Ошибка!\n");
+           rewind(stdin);
+       }
+       if (arr[i] > 0)
+        m = i;
+   }
+    int max  = arr[0];
+    for(int i = 1; i < n; i++) {
+        if (arr[i] > max)
+            max = arr[i];
+    }
+    for(int i = 0; i < m; i++)
+        sum += arr[i];
+
+        printf("sum = %d\n", sum);
+        printf("max = %d", max);
+    return 0;
+}
