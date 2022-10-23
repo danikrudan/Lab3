@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int main() {
+    int i, n1, n2, temp;
+    int arr1[100], arr2[100];
+    printf("Введите длину первого массива\n");
+    printf("n1 = ");
+    while (scanf("%d", &n1) != 1 || getchar() != '\n'){
+        printf("Ошибка!\n");
+        rewind(stdin);
+    }
+
+    for(i = 0; i < n1 ;i++) {
+        printf("arr1[%d] = ", i);
+        while (scanf("%d", &arr1[i]) != 1 || getchar() != '\n') {
+            printf("Ошибка!\n");
+            rewind(stdin);
+        }
+    }
+    printf("Введите длину второго массива\n");
+    printf("n2 = ");
+    while (scanf("%d", &n2) != 1 || getchar() != '\n'){
+        printf("Ошибка!\n");
+        rewind(stdin);
+    }
+    for(i = 0; i < n2 ;i++) {
+        printf("arr2[%d] = ", i);
+        while (scanf("%d", &arr2[i]) != 1 || getchar() != '\n') {
+            printf("Ошибка!\n");
+            rewind(stdin);
+        }
+    }
+    int nRes = n1 + n2;
+    int arrRes[nRes];
+    for (i = 0; i < n1; i++)
+        arrRes[i] = arr1[i];
+    for (i = 0; i < n2; i++)
+        arrRes[n1 + i] = arr2[i];
+
+    for (i = 0; i < nRes - 1; i++){
+        for (int j = 0; j < nRes - 1 - i; j++){
+            if (arrRes[j] > arrRes[j + 1]){
+                temp = arrRes[j];
+                arrRes[j] = arrRes[j + 1];
+                arrRes[j + 1] = temp;
+            }
+        }
+    }
+    for (i = 0; i < nRes; i++)
+        printf("%d ", arrRes[i]);
+    return 0;
+}
