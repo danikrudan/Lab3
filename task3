@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
-    int i, n1, n2, temp;
+    int i, n1, n2, temp, type_input , m;
     int arr1[100], arr2[100];
     printf("Введите длину первого массива\n");
     printf("n1 = ");
@@ -10,25 +12,91 @@ int main() {
         rewind(stdin);
     }
 
-    for(i = 0; i < n1 ;i++) {
-        printf("arr1[%d] = ", i);
-        while (scanf("%d", &arr1[i]) != 1 || getchar() != '\n') {
-            printf("Ошибка!\n");
-            rewind(stdin);
+    printf("Выберите тип ввода: \n1 - ручной ввод\n2 - рандом\n");
+    while (scanf("%d", &type_input) != 1 || getchar() != '\n'){
+        printf("Ошибка!\n");
+        rewind(stdin);
+    }
+
+
+    if (type_input == 2) {
+        srand(time(NULL));
+        for (int i = 0; i < n1; i++) {
+            int random_num = rand() % 200 + (-100);
+            arr1[i] = random_num;
+            if (arr1[i] > 0)
+                m = i;
+        }
+        printf("Элементы массива: ");
+        for (int i = 0; i < n1; i++) {
+            printf("%d ", arr1[i]);
+        }
+        printf("\n");
+
+    }
+
+    else if (type_input == 1) {
+        for (int i = 0; i < n1; i++) {
+            printf("arr1[%d] = ", i);
+            while (scanf("%d", &arr1[i]) != 1 && getchar() != '\n') {
+                printf("Ошибка!\n");
+                rewind(stdin);
+            }
+
         }
     }
+
+    else {
+        printf("Такого варианта нет");
+        return 0;
+    }
+
+
+
+
     printf("Введите длину второго массива\n");
     printf("n2 = ");
     while (scanf("%d", &n2) != 1 || getchar() != '\n'){
         printf("Ошибка!\n");
         rewind(stdin);
     }
-    for(i = 0; i < n2 ;i++) {
-        printf("arr2[%d] = ", i);
-        while (scanf("%d", &arr2[i]) != 1 || getchar() != '\n') {
-            printf("Ошибка!\n");
-            rewind(stdin);
+    printf("Выберите тип ввода: \n1 - ручной ввод\n2 - рандом\n");
+    while (scanf("%d", &type_input) != 1 || getchar() != '\n'){
+        printf("Ошибка!\n");
+        rewind(stdin);
+    }
+
+
+    if (type_input == 2) {
+        srand(time(NULL));
+        for (int i = 0; i < n2; i++) {
+            int random_num = rand() % 200 + (-100);
+            arr2[i] = random_num;
+            if (arr2[i] > 0)
+                m = i;
         }
+        printf("Элементы массива: ");
+        for (int i = 0; i < n2; i++) {
+            printf("%d ", arr2[i]);
+        }
+        printf("\n");
+
+    }
+
+    else if (type_input == 1) {
+        for (int i = 0; i < n2; i++) {
+            printf("arr2[%d] = ", i);
+            while (scanf("%d", &arr2[i]) != 1 && getchar() != '\n') {
+                printf("Ошибка!\n");
+                rewind(stdin);
+            }
+
+        }
+    }
+
+    else {
+        printf("Такого варианта нет");
+        return 0;
     }
     int nRes = n1 + n2;
     int arrRes[nRes];
@@ -46,6 +114,7 @@ int main() {
             }
         }
     }
+    printf("Переделанный массив: ");
     for (i = 0; i < nRes; i++)
         printf("%d ", arrRes[i]);
     return 0;
