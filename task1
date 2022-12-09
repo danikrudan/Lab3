@@ -14,9 +14,10 @@ int main() {
         rewind(stdin);
     }
     printf("Выберите тип ввода: \n1 - ручной ввод\n2 - рандом\n");
-    while (scanf("%d", &type_input) != 1 || getchar() != '\n'){
+    while (scanf("%d", &type_input) != 1 || getchar() != '\n' || type_input < 1 || type_input > 2){
         printf("Ошибка!\n");
         rewind(stdin);
+        printf("Выберите тип ввода: \n1 - ручной ввод\n2 - рандом\n");
     }
 
 
@@ -46,10 +47,7 @@ int main() {
                 m = i;
         }
     }
-    else {
-        printf("Такого варианта нет");
-        return 0;
-    }
+
     int max = arr[0];
     for (int i = 1; i < n; i++) {
         if (arr[i] > max)
@@ -63,4 +61,3 @@ int main() {
         printf("max = %d", max);
     return 0;
 }
-
